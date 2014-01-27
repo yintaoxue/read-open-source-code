@@ -23,9 +23,65 @@ public class TestBuilder {
 
 	public static void main(String[] args) {
 		testToString();
+		testEquals();
+		testHashCode();
+		testCompareTo();
+	}
+	
+	public static void testCompareTo() {
+		System.out.println("------------testCompareTo-------------");
+		
+		Person p = new Person();
+		p.age = 12;
+		p.name = "tom";
+		p.smoker = true;
+		
+		Person p1 = new Person();
+		p1.age = 12;
+		p1.name = "tom";
+		p1.smoker = true;
+		
+		Person p2 = new Person();
+		p2.age = 12;
+		p2.name = "tom2";
+		p2.smoker = true;
+		
+		System.out.println(p.compareTo(p1));
+		System.out.println(p.compareTo(p2));
+	}
+	
+	public static void testHashCode() {
+		System.out.println("------------testHashCode-------------");
+		
+		Person p = new Person();
+		p.age = 12;
+		p.name = "tom";
+		p.smoker = true;
+		
+		System.out.println(p.hashCode());
+		System.out.println(p.hashCode2());
+		
+	}
+	
+	public static void testEquals() {
+		System.out.println("------------testEquals-------------");
+		
+		Person p = new Person();
+		p.age = 12;
+		p.name = "tom";
+		p.smoker = true;
+		
+		Person p1 = new Person();
+		p1.age = 12;
+		p1.name = "tom";
+		p1.smoker = true;
+		
+		System.out.println(p.equals(p1));
+		
 	}
 	
 	public static void testToString() {
+		System.out.println("------------testToString-------------");
 		Person p = new Person();
 		p.age = 12;
 		p.name = "tom";
