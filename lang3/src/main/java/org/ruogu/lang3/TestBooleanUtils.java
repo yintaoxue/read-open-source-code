@@ -45,7 +45,18 @@ public class TestBooleanUtils {
 		
 		test("a1", "a2");
 		test(1,2,3);
-		test(true, false, true);
+//		test(true, false, true);
+		
+		test(Boolean.TRUE);
+		
+	}
+	
+	public static void test(boolean b) {
+		System.out.println("test1");
+	}
+	
+	public static void test(Boolean b) {
+		System.out.println("test2");
 	}
 	
     public static boolean and(final boolean... array) {
@@ -92,6 +103,12 @@ public class TestBooleanUtils {
 	}
 	
 	public static void test(boolean... arguments) {
+        for (int i = 0; i < arguments.length; i++) {
+            System.out.println(arguments[i]);
+        }
+	}
+	
+	public static void test(Boolean... arguments) {
         for (int i = 0; i < arguments.length; i++) {
             System.out.println(arguments[i]);
         }
