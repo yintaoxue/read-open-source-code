@@ -16,8 +16,15 @@
  */
 package org.ruogu.lang3;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 public class ArrayUtilsTest {
 	public static void main(String[] args) {
 		Class<?>[] classArray = new Class[0];
+
+		int[][] intArray = { { 1, 4, 6 }, { 2, 0, 7 } };
+		
+		System.out.println(ArrayUtils.toString(intArray));
+		
 	}
 }
