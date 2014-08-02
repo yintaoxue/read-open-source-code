@@ -398,7 +398,10 @@ public class Job extends Thread implements VariableSpace, NamedParams, HasLogCha
           }
           jerEnd = new JobEntryResult(res, jes.getLogChannelId(), BaseMessages.getString(PKG, "Job.Comment.JobFinished"), BaseMessages.getString(PKG, "Job.Reason.Finished"), null, 0, null);
         } else {
+
+        	// 递归执行Job中的节点，获得最终结果
           res = execute(0, null, startpoint, null, BaseMessages.getString(PKG, "Job.Reason.Started"));
+          
           jerEnd = new JobEntryResult(res, startpoint.getEntry().getLogChannel().getLogChannelId(), BaseMessages.getString(PKG, "Job.Comment.JobFinished"), BaseMessages.getString(PKG, "Job.Reason.Finished"), null, 0, null);
         }
         // Save this result...
@@ -503,11 +506,14 @@ public class Job extends Thread implements VariableSpace, NamedParams, HasLogCha
         {
             prevResult = new Result();
         }
-
+        
+        // 备份当前线程的类加载器，设置为Job节点的类加载器
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(jobEntryInterface.getClass().getClassLoader());
+        
         // Execute this entry...
         JobEntryInterface cloneJei = (JobEntryInterface)jobEntryInterface.clone();
+        
         ((VariableSpace)cloneJei).copyVariablesFrom(this);
         cloneJei.setRepository(rep);
         cloneJei.setParentJob(this);
@@ -517,7 +523,7 @@ public class Job extends Thread implements VariableSpace, NamedParams, HasLogCha
         for (JobEntryListener jobEntryListener : jobEntryListeners) {
         	jobEntryListener.beforeExecution(this, jobEntryCopy, cloneJei);
         }
-        if (interactive) {
+        if (interactive) {	// 交互式的指的是？
 			if (jobEntryCopy.isTransformation()) {
 				getActiveJobEntryTransformations().put(jobEntryCopy, (JobEntryTrans)cloneJei);
 			}
@@ -525,7 +531,10 @@ public class Job extends Thread implements VariableSpace, NamedParams, HasLogCha
 				getActiveJobEntryJobs().put(jobEntryCopy, (JobEntryJob)cloneJei);
 			}
         }
+        
+        // 如果节点是转换，应该是执行JobEntryTrans类了
         final Result result = cloneJei.execute(prevResult, nr);
+        
         final long end = System.currentTimeMillis();
         if (interactive) {
 			if (jobEntryCopy.isTransformation()) {
