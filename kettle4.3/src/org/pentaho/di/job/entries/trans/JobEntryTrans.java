@@ -614,7 +614,7 @@ public class JobEntryTrans extends JobEntryBase implements Cloneable, JobEntryIn
           break;
         }
         
-        // 加载转换信息
+        /** 加载转换信息 */
         // Load the transformation only once for the complete loop!
         // Throws an exception if it was not possible to load the transformation.  For example, the XML file doesn't exist or the repository is down.
         // Log the stack trace and return an error condition from this
@@ -1030,8 +1030,10 @@ public class JobEntryTrans extends JobEntryBase implements Cloneable, JobEntryIn
                     trans.setJobEndDate( rootJob.getEndDate() );
                     
                     try {
-            			// Start execution...
-                    	//
+                    	
+            			/**
+            			 * 开始执行转换...
+            			 */
                     	trans.execute(args);
 
                     	// Wait until we're done with it...
