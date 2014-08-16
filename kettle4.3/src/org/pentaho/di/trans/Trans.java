@@ -834,7 +834,9 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
      */
     public void startThreads() throws KettleException
     {
-      // Now prepare to start all the threads...
+    	// 开始执行转换线程
+    	
+        // Now prepare to start all the threads...
     	// 
     	nrOfFinishedSteps=0;
     	nrOfActiveSteps=0;
