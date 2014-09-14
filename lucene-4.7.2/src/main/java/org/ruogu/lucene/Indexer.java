@@ -42,27 +42,25 @@ public class Indexer {
 		}
 
 	}
-	
-	static void indexDocs(IndexWriter writer) throws IOException {
+
+	public static void indexDocs(IndexWriter writer) throws IOException {
 		Document doc = new Document();
 
-        Field pathField = new StringField("path", "d:opt", Field.Store.YES);
-        doc.add(pathField);
+		Field pathField = new StringField("path", "opt", Field.Store.YES);
+		doc.add(pathField);
 
-        doc.add(new LongField("modified", 123L, Field.Store.NO));
+		doc.add(new LongField("modified", 123L, Field.Store.NO));
 
-        doc.add(new TextField("contents", "content", Field.Store.YES));
+		doc.add(new TextField("contents", "content is easy.", Field.Store.YES));
 
-        if (writer.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE)
-        {
-          System.out.println("adding ");
-          writer.addDocument(doc);
-        }
-        else
-        {
-          System.out.println("updating ");
-          writer.updateDocument(new Term("path", "d:opt"), doc);
-        }
+		if (writer.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
+			writer.addDocument(doc);
+			System.out.println("added");
+		} else {
+			
+			writer.updateDocument(new Term("path", "opt"), doc);
+			System.out.println("updated");
+		}
 	}
 
 }
