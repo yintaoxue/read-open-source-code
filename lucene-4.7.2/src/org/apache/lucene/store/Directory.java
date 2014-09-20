@@ -156,7 +156,10 @@ public abstract class Directory implements Closeable {
 
   @Override
   public String toString() {
-    return getClass().getSimpleName() + '@' + Integer.toHexString(hashCode()) + " lockFactory=" + getLockFactory();
+	  //!
+    String s = getClass().getSimpleName() + '@' + Integer.toHexString(hashCode()) + " lockFactory=" + getLockFactory();
+    System.out.println("[Directory] toString:" + s);
+    return s;
   }
 
   /**

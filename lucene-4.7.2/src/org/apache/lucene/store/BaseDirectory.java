@@ -52,6 +52,9 @@ public abstract class BaseDirectory extends Directory {
   public void setLockFactory(LockFactory lockFactory) throws IOException {
     assert lockFactory != null;
     this.lockFactory = lockFactory;
+    //!
+//    System.out.println("[BaseDirectory] toString:" + this.toString());
+    System.out.println("[BaseDirectory.setLockFacotry] lockId:" + this.getLockID());
     lockFactory.setLockPrefix(this.getLockID());
   }
 

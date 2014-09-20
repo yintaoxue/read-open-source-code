@@ -45,6 +45,7 @@ public class Searcher {
 		    
 		    Document doc = searcher.doc(hits[0].doc);
 		    String contents = doc.get("contents");
+		    
 		    System.out.println(contents);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -741,7 +741,7 @@ public class IndexWriter implements Closeable, TwoPhaseCommit{
 
         // Record that we have a change (zero out all
         // segments) pending:
-        changed();
+        changed();	//! version++
       } else {
         segmentInfos.read(directory);
 
