@@ -45,6 +45,7 @@ public class Indexer {
 
 	public static void indexDocs(IndexWriter writer) throws IOException {
 		Document doc = new Document();
+		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_47);
 
 		Field pathField = new StringField("path", "opt", Field.Store.YES);
 		doc.add(pathField);
@@ -55,6 +56,7 @@ public class Indexer {
 
 		if (writer.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
 			writer.addDocument(doc);
+			writer.addDocument(doc, analyzer);
 			System.out.println("added");
 		} else {
 			
