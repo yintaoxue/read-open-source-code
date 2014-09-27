@@ -54,15 +54,15 @@ public class Indexer {
 
 		doc.add(new TextField("contents", "content is easy.", Field.Store.YES));
 
-		if (writer.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
+//		if (writer.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
 			writer.addDocument(doc);
-			writer.addDocument(doc, analyzer);
-			System.out.println("added");
-		} else {
-			
-			writer.updateDocument(new Term("path", "opt"), doc);
+//			writer.addDocument(doc, analyzer);
+//			System.out.println("added");
+//		} else {
+//			
+//			writer.updateDocument(new Term("path", "opt"), doc);
 			System.out.println("updated");
-		}
+//		}
 	}
 
 }
