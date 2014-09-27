@@ -170,7 +170,7 @@ final class DocFieldProcessor extends DocConsumer {
   @Override
   public void processDocument(FieldInfos.Builder fieldInfos) throws IOException {
 
-    consumer.startDocument();
+    consumer.startDocument();	//! 初始化
     storedConsumer.startDocument();
 
     fieldCount = 0;
