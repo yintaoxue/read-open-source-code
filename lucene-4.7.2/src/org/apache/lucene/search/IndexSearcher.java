@@ -615,10 +615,11 @@ public class IndexSearcher {
         // continue with the following leaf
         continue;
       }
+      // BooleaWeight, BoostedWeight...
       Scorer scorer = weight.scorer(ctx, !collector.acceptsDocsOutOfOrder(), true, ctx.reader().getLiveDocs());
       if (scorer != null) {
         try {
-          scorer.score(collector);
+          scorer.score(collector);	// BooleanScorer...
         } catch (CollectionTerminatedException e) {
           // collection was terminated prematurely
           // continue with the following leaf
